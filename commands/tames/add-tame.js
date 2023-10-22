@@ -1,5 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
+const { Client, Events, GatewayIntentBits } = require('discord.js');
 const Sequelize = require('sequelize');
+
 
 /*
 // Setting up database
@@ -175,13 +177,13 @@ module.exports = {
     const tagMovement = interaction.options.getNumber('movement');
     const tagFortitude = interaction.options.getNumber('fortitude');
     const tagCrafting = interaction.options.getNumber('crafting');
+    //const Tags = client.Tags;
+    //interaction.client.Tags;
     
     try {
       // equivalent to: INSERT INTO tags (name, description, username) values (?, ?, ?);
       const tag = await Tags.create({
         name: tagName,
-        //description: tagDescription,
-        //username: interaction.user.username,
         //
         speciesTag: tagSpecies,
         isFemale: tagFemale,

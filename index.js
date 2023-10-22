@@ -59,7 +59,8 @@ const Tags = sequelize.define('tags', {
   statCrafting: Sequelize.DOUBLE
 });
 
-module.exports = {Tags};
+client.Tags = Tags;
+//module.exports = { Tags };
 
 //Reads the commands in the commands folder.
 client.commands = new Collection();
@@ -89,7 +90,6 @@ for (const file of eventFiles) {
   const filePath = path.join(eventsPath, file);
   const event = require(filePath);
   if (event.once) {
-    Tags.sync(); //This should be inside the ready.js event, but it keeps saying Tags is undefined.
     client.once(event.name, (...args) => event.execute(...args));
   } else {
     client.on(event.name, (...args) => event.execute(...args));
