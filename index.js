@@ -1,11 +1,25 @@
+const keep_alive = require("./keep_alive.js");
 const fs = require('node:fs');
 const Sequelize = require('sequelize');
 const path = require('node:path');
-const keep_alive = require("./keep_alive.js");
 
+//const fetch = require('node-fetch');
+
+//import keep_alive from "./keep_alive.js";
+/* If I switch the type: module
+import fs from "node:fs";
+import Sequelize from "sequelize";
+import path from "node:path";
+import fetch from "node-fetch";
+import pkg from 'discord.js';
+const { Client, Collection, Events, GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permissions, SlashCommandBuilder } = pkg;
+*/
+
+//import { Client, Collection, Events, GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permissions, SlashCommandBuilder } from 'discord.js';
 const { Client, Collection, Events, GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permissions, SlashCommandBuilder} = require('discord.js');
 
-const client = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]});
+const client = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent,
+                                      GatewayIntentBits.GuildMembers]});
 client.cooldowns = new Collection();
 client.commands = new Collection();
 
@@ -60,6 +74,7 @@ const Tags = sequelize.define('tags', {
 });
 
 client.Tags = Tags;
+client.Fetch = fetch;
 //module.exports = { Tags };
 
 //Reads the commands in the commands folder.
