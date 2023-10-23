@@ -2,52 +2,8 @@ const { SlashCommandBuilder } = require('discord.js');
 const { Client, Events, GatewayIntentBits } = require('discord.js');
 const Sequelize = require('sequelize');
 
-
-/*
-// Setting up database
-const sequelize = new Sequelize('database', 'user', 'password', {
-  host: 'localhost',
-  dialect: 'sqlite',
-  logging: false,
-  // SQLite only
-  storage: 'database.sqlite',
-});
-
-const Tags = sequelize.define('tags', {
-  name: {
-    type: Sequelize.STRING,
-    unique: true,
-  },
-  speciesTag: Sequelize.STRING,
-  isFemale: Sequelize.BOOLEAN,
-  isNeutered: Sequelize.BOOLEAN,
-  tamer: Sequelize.STRING,
-  imprinter: Sequelize.STRING,
-  imprintingQuality: Sequelize.DOUBLE,
-  mutationsMale: Sequelize.INTEGER,
-  mutationsFemale: Sequelize.INTEGER,
-  babyAge: Sequelize.DOUBLE,
-  dinoLevel: Sequelize.INTEGER,
-  colorSet0: Sequelize.STRING,
-  colorSet1: Sequelize.STRING,
-  colorSet2: Sequelize.STRING,
-  colorSet3: Sequelize.STRING,
-  colorSet4: Sequelize.STRING,
-  colorSet5: Sequelize.STRING,
-  statHealth: Sequelize.DOUBLE,
-  statStamina: Sequelize.DOUBLE,
-  statTorpidity: Sequelize.DOUBLE,
-  statOxygen: Sequelize.DOUBLE,
-  statFood: Sequelize.DOUBLE,
-  statWater: Sequelize.DOUBLE,
-  statTemperature: Sequelize.DOUBLE,
-  statWeight: Sequelize.DOUBLE,
-  statMelee: Sequelize.DOUBLE,
-  statMovement: Sequelize.DOUBLE,
-  statFortitude: Sequelize.DOUBLE,
-  statCrafting: Sequelize.DOUBLE
-});
-*/
+// This needs to be restructed, ask in fragments. Required details first, stats together, colors together, etc after.
+// Ultimately though will make a command/event for reading and importing the .ini export file.
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('add-tame')
@@ -145,7 +101,7 @@ module.exports = {
       option.setName('crafting')
       .setDescription('The maximum crafting value of the dinosaur when it was tamed/birthed.'))
   ,
-  async execute(interaction) {
+  async execute(interaction) { 
     const tagName = interaction.options.getString('name');
     const tagSpecies = interaction.options.getString('species');
     const tagFemale = interaction.options.getBoolean('female');
@@ -177,14 +133,10 @@ module.exports = {
     const tagMovement = interaction.options.getNumber('movement');
     const tagFortitude = interaction.options.getNumber('fortitude');
     const tagCrafting = interaction.options.getNumber('crafting');
-    //const Tags = client.Tags;
-    //interaction.client.Tags;
     
-    try {
-      // equivalent to: INSERT INTO tags (name, description, username) values (?, ?, ?);
-      const tag = await Tags.create({
+    try {   
+      const tag = await interaction.client.Tags.create({
         name: tagName,
-        //
         speciesTag: tagSpecies,
         isFemale: tagFemale,
         isNeutered: tagNeutered,
@@ -214,7 +166,7 @@ module.exports = {
         statMelee: tagMelee,
         statMovement: tagMovement,
         statFortitude: tagFortitude,
-        statCrafting: tagCrafting
+        statCrafting: tagCrafting,
         //
       });
 
