@@ -30,18 +30,28 @@ module.exports = {
     var dataImport = res.data;
 
     console.log('res: ' + res);
-    console.log('dataImport: ' + dataImport);
+    //console.log('res: ' + JSON.stringify(res)); 
     
-    if (dataImport.includes("[Dino Data]")) {
-      var dataImport2 = dataImport.split("[Dino Data]")[1];
+    //
+    //
+    console.log('dataImport: ' + dataImport);
+    //dataImport2 = dataImport.toUnicodeString();
+    //console.log('dataImport2: ' + dataImport2);
+    
+    //Attempted workaround to cut off the symbols.
+    /*
+    if (dataImport.includes("DinoID1")) {
+      var dataImport2 = dataImport.split("DinoID1")[1].trim();
       console.log('DataImport split!');
     }
-    //console.log(dataImport2);
+    */
+    //console.log('Data after split: ' + dataImport2);
+    
     
     var lines = dataImport.split('\n');
 
-    console.log('DataImport: ', dataImport);
-    console.log('Lines : ' + lines);
+    //console.log('DataImport: ', dataImport);
+    //console.log('Lines : ' + lines);
     
 
     lines.forEach(line => {
