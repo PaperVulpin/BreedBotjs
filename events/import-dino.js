@@ -1,43 +1,6 @@
 //const { Client } = require('discord.js');
-//const fetch = require('node-fetch');
 const { Client, Events, GatewayIntentBits } = require('discord.js');
 const axios = require('axios');
-
-//const client = new Client();
-/*
-client.on('message', async (message) => {
-  if (message.author.bot) return;
-
-  // get the file's URL
-  const file = message.attachments.first()?.url;
-  if (!file) return console.log('No attached file found');
-
-  try {
-    message.channel.send('Reading the file! Fetching data...');
-
-    // fetch the file from the external URL
-    const response = await fetch(file);
-
-    // if there was an error send a message with the status
-    if (!response.ok)
-      return message.channel.send(
-        'There was an error with fetching the file:',
-        response.statusText,
-      );
-
-    // take the response stream and read it to completion
-    const text = await response.text();
-
-    if (text) {
-      message.channel.send(`\`\`\`${text}\`\`\``);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-});
-*/
-
-
 
 module.exports = {
   name: Events.MessageCreate,
@@ -45,14 +8,13 @@ module.exports = {
     //console.log('Client: ' + client);
     console.log('Message: ' + message);
     console.log('Message content:' + message.content);
+    console.log('Message channel:' + message.channel);
     console.log('Message author:' + message.author);
     console.log('Message embeds:' + message.embeds);
     console.log('Message attachments:' + message.attachments);
     console.log('Message attachment array size:' + message.attachments.size);
     console.log('Message components:' + message.components);
-    
-
-    
+    var tagName, tagSpecies, tagLevel = "";
     
     if (message.author.bot) return;
 
@@ -63,74 +25,100 @@ module.exports = {
     if (!file) return console.log('No attached file found');
 
     const res = await axios.get(file).catch(e => console.error);
-    var dataImport = res.data; 
-    console.log('res: ', dataImport);
+
     
-    //const fetch = require("node-fetch");
-/*
-    try {
-      message.channel.send('Reading the file! Fetching data...');
+    var dataImport = res.data;
 
-      // fetch the file from the external URL
-      const response = await fetch(file);
-      
-
-      // if there was an error send a message with the status
-      if (!response.ok)
-        return message.channel.send(
-          'There was an error with fetching the file:',
-          response.statusText,
-        );
-
-      // take the response stream and read it to completion
-      const text = await response.text();
-
-      if (text) {
-        message.channel.send(`\`\`\`${text}\`\`\``);
-      }
-    } catch (error) {
-      console.log(error);
+    console.log('res: ' + res);
+    console.log('dataImport: ' + dataImport);
+    
+    if (dataImport.includes("[Dino Data]")) {
+      var dataImport2 = dataImport.split("[Dino Data]")[1];
+      console.log('DataImport split!');
     }
-    */
-  },
-};
+    //console.log(dataImport2);
+    
+    var lines = dataImport.split('\n');
 
-/*
-const { Client, Events, GatewayIntentBits } = require('discord.js');
+    console.log('DataImport: ', dataImport);
+    console.log('Lines : ' + lines);
+    
 
-module.exports = {
-  name: Events.MessageCreate,
-  async execute(client, message) {
-    if (message.author.bot) return;
-
-    // get the file's URL
-    const file = message.attachments.first()?.url;
-    if (!file) return console.log('No attached file found');
-
-    const fetch = require('node-fetch').default;
-
-    try {
-      message.channel.send('Reading the file! Fetching data...');
-
-      // fetch the file from the external URL
-      const response = await fetch(file);
-
-      // if there was an error send a message with the status
-      if (!response.ok)
-        return message.channel.send(
-          'There was an error with fetching the file:',
-          response.statusText,
-        );
-
-      // take the response stream and read it to completion
-      const text = await response.text();
-
-      if (text) {
-        message.channel.send(`\`\`\`${text}\`\`\``);
+    lines.forEach(line => {
+      if (line.includes('TamedName')) {
+        tagName = line.split('=')[1].trim();
+        console.log('Tag name: ' + tagName);
+        // Do something with tagName
       }
-    } catch (error) {
-      console.log(error);
+      if (line.includes('DinoNameTag')) {
+        tagSpecies = line.split('=')[1].trim();
+        console.log('Tag species: ' + tagSpecies);
+        // Do something with tagSpecies
+      }
+      if (line.includes('CharacterLevel')) {
+        tagLevel = line.split('=')[1].trim();
+        console.log('Tag level: ' + tagLevel);
+        // Do something with tagSpecies
+      }
+    });
+
+
+    
+    //console.log('res: ', dataImport);
+    //console.log(message.client);
+
+    
+    
+    //
+
+    try {   
+      const tag = await message.client.Tags.create({
+        name: tagName,
+        speciesTag: tagSpecies,
+        dinoLevel: tagLevel,
+        /*
+        speciesTag: tagSpecies,
+        isFemale: tagFemale,
+        isNeutered: tagNeutered,
+        tamer: tagTamer,
+        imprinter: tagImprinter,
+        imprintingQuality: tagImprinting,
+        mutationsMale: tagMutationsMale,
+        mutationsFemale: tagMutationsFemale,
+        babyAge: tagBabyAge,
+        dinoLevel: tagLevel,
+        
+        colorSet0: tagColor0,
+        colorSet1: tagColor1,
+        colorSet2: tagColor2,
+        colorSet3: tagColor3,
+        colorSet4: tagColor4,
+        colorSet5: tagColor5,
+        
+        statHealth: tagHealth,
+        statStamina: tagStamina,
+        statTorpidity: tagTorpidity,
+        statOxygen: tagOxygen,
+        statFood: tagFood,
+        statWater: tagWater,
+        statTemperature: tagTemperature,
+        statWeight: tagWeight,
+        statMelee: tagMelee,
+        statMovement: tagMovement,
+        statFortitude: tagFortitude,
+        statCrafting: tagCrafting,
+        */
+        //
+      });
+
+      return message.channel.send(`Dinosaur imported: ` + tagName + " the level " + tagLevel + " " + tagSpecies);
     }
-  },
-};
-*/
+    catch (error) {
+      if (error.name === 'SequelizeUniqueConstraintError') {
+        return message.channel.send('That dino name already exists.');
+      }
+      console.log('add-dino-tag: ' + error);
+      return message.channel.send('Something went wrong with adding a dinosaur.');
+    }
+  }
+}

@@ -13,7 +13,7 @@ module.exports = {
 
     return interaction.reply('List of dinos: ' + tagString);
     
-    const tagName = interaction.options.getString('name');
-    const tag = await interaction.client.Tags.findOne({ where: {name: tagName } } );
+    //const tagName = interaction.options.getString('name');
+    //const tag = await interaction.client.Tags.findOne({ where: {name: tagName } } );
     }
   }
