@@ -17,6 +17,7 @@
     "index": "^0.4.0",
     "index.js": "^0.0.3",
     "node-fetch": "^3.3.2",
+    "openai": "^4.13.0",
     "sequelize": "^6.33.0",
     "sqlite3": "^5.1.6"
   }

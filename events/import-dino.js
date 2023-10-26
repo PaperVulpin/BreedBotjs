@@ -14,7 +14,11 @@ module.exports = {
     console.log('Message attachments:' + message.attachments);
     console.log('Message attachment array size:' + message.attachments.size);
     console.log('Message components:' + message.components);
-    var tagName, tagSpecies, tagLevel = "";
+    
+    var tagName, tagSpecies, tagFemale, tagLevel, tagNeutered, tagTamer, tagImprinter, tagImprinting, tagMutationsMale, 
+tagMutationsFemale, tagBabyAge, tagColor0, tagColor1, tagColor2, tagColor3, tagColor4, tagColor5,
+tagHealth, tagStamina, tagTorpidity, tagOxygen, tagFood, tagWater, tagTemperature, tagWeight,
+tagMelee, tagMovement, tagFortitude, tagCrafting = "";
     
     if (message.author.bot) return;
 
@@ -25,28 +29,11 @@ module.exports = {
     if (!file) return console.log('No attached file found');
 
     const res = await axios.get(file).catch(e => console.error);
-
     
     var dataImport = res.data;
 
     console.log('res: ' + res);
-    //console.log('res: ' + JSON.stringify(res)); 
-    
-    //
-    //
-    console.log('dataImport: ' + dataImport);
-    //dataImport2 = dataImport.toUnicodeString();
-    //console.log('dataImport2: ' + dataImport2);
-    
-    //Attempted workaround to cut off the symbols.
-    /*
-    if (dataImport.includes("DinoID1")) {
-      var dataImport2 = dataImport.split("DinoID1")[1].trim();
-      console.log('DataImport split!');
-    }
-    */
-    //console.log('Data after split: ' + dataImport2);
-    
+    console.log('dataImport: ' + dataImport);    
     
     var lines = dataImport.split('\n');
 
@@ -70,6 +57,137 @@ module.exports = {
         console.log('Tag level: ' + tagLevel);
         // Do something with tagSpecies
       }
+     // lines.forEach(line => {
+      if (line.includes('IsFemale')) {
+        tagFemale = line.split('=')[1].trim();
+        console.log('Is female: ' + tagFemale);
+        // Do something with tagFemale
+      }
+      if (line.includes('bNeutered')) {
+        tagNeutered = line.split('=')[1].trim();
+        console.log('Is neutered: ' + tagNeutered);
+        // Do something with tagNeutered
+      }
+      if (line.includes('TamerString')) {
+        tagTamer = line.split('=')[1].trim();
+        console.log('Tamer: ' + tagTamer);
+        // Do something with tagTamer
+      }
+      if (line.includes('ImprinterName')) {
+        tagImprinter = line.split('=')[1].trim();
+        console.log('Imprinter: ' + tagImprinter);
+        // Do something with tagImprinter
+      }
+      if (line.includes('ImprintingQuality')) {
+        tagImprinting = line.split('=')[1].trim();
+        console.log('Imprinting quality: ' + tagImprinting);
+        // Do something with tagImprinting
+      }
+      if (line.includes('MutationsMale')) {
+        tagMutationsMale = line.split('=')[1].trim();
+        console.log('Mutations (Male): ' + tagMutationsMale);
+        // Do something with tagMutationsMale
+      }
+      if (line.includes('MutationsFemale')) {
+        tagMutationsFemale = line.split('=')[1].trim();
+        console.log('Mutations (Female): ' + tagMutationsFemale);
+        // Do something with tagMutationsFemale
+      }
+      if (line.includes('BabyAge')) {
+        tagBabyAge = line.split('=')[1].trim();
+        console.log('Baby age: ' + tagBabyAge);
+        // Do something with tagBabyAge
+      }
+      if (line.includes('ColorSet[0]')) {
+        tagColor0 = line.split(']=')[1].trim();
+        console.log('Color Set 0: ' + tagColor0);
+        // Do something with tagColor0
+      }
+      if (line.includes('ColorSet[1]')) {
+        tagColor1 = line.split(']=')[1].trim();
+        console.log('Color Set 1: ' + tagColor1);
+        // Do something with tagColor1
+      }
+      if (line.includes('ColorSet[2]')) {
+        tagColor2 = line.split(']=')[1].trim();
+        console.log('Color Set 2: ' + tagColor2);
+        // Do something with tagColor2
+      }
+      if (line.includes('ColorSet[3]')) {
+        tagColor3 = line.split(']=')[1].trim();
+        console.log('Color Set 3: ' + tagColor3);
+        // Do something with tagColor3
+      }
+      if (line.includes('ColorSet[4]')) {
+        tagColor4 = line.split(']=')[1].trim();
+        console.log('Color Set 4: ' + tagColor4);
+        // Do something with tagColor4
+      }
+      if (line.includes('ColorSet[5]')) {
+        tagColor5 = line.split(']=')[1].trim();
+        console.log('Color Set 5: ' + tagColor5);
+        // Do something with tagColor5
+      }
+      if (line.includes('Health')) {
+        tagHealth = line.split('=')[1].trim();
+        console.log('Stat Health: ' + tagHealth);
+        // Do something with tagHealth
+      }
+      if (line.includes('Stamina')) {
+        tagStamina = line.split('=')[1].trim();
+        console.log('Stat Stamina: ' + tagStamina);
+        // Do something with tagStamina
+      }
+      if (line.includes('Torpidity')) {
+        tagTorpidity = line.split('=')[1].trim();
+        console.log('Stat Torpidity: ' + tagTorpidity);
+        // Do something with tagTorpidity
+      }
+      if (line.includes('Oxygen')) {
+        tagOxygen = line.split('=')[1].trim();
+        console.log('Stat Oxygen: ' + tagOxygen);
+        // Do something with tagOxygen
+      }
+      if (line.includes('food')) {
+        tagFood = line.split('=')[1].trim();
+        console.log('Stat Food: ' + tagFood);
+        // Do something with tagFood
+      }
+      if (line.includes('Water')) {
+        tagWater = line.split('=')[1].trim();
+        console.log('Stat Water: ' + tagWater);
+        // Do something with tagWater
+      }
+      if (line.includes('Temperature')) {
+        tagTemperature = line.split('=')[1].trim();
+        console.log('Stat Temperature: ' + tagTemperature);
+        // Do something with tagTemperature
+      }
+      if (line.includes('Weight')) {
+        tagWeight = line.split('=')[1].trim();
+        console.log('Stat Weight: ' + tagWeight);
+        // Do something with tagWeight
+      }
+      if (line.includes('Melee')) {
+        tagMelee = line.split('=')[1].trim();
+        console.log('Stat Melee: ' + tagMelee);
+        // Do something with tagMelee
+      }
+      if (line.includes('Movement')) {
+        tagMovement = line.split('=')[1].trim();
+        console.log('Stat Movement: ' + tagMovement);
+        // Do something with tagMovement
+      }
+      if (line.includes('Fortitude')) {
+        tagFortitude = line.split('=')[1].trim();
+        console.log('Stat Fortitude: ' + tagFortitude);
+        // Do something with tagFortitude
+      }
+      if (line.includes('Crafting')) {
+        tagCrafting = line.split('=')[1].trim();
+        console.log('Stat Crafting: ' + tagCrafting);
+        // Do something with tagCrafting
+      }
     });
 
 
@@ -85,10 +203,37 @@ module.exports = {
       const tag = await message.client.Tags.create({
         name: tagName,
         speciesTag: tagSpecies,
-        dinoLevel: tagLevel,
-        /*
-        speciesTag: tagSpecies,
         isFemale: tagFemale,
+        isNeutered: tagNeutered,
+        tamer: tagTamer,
+        imprinter: tagImprinter,
+        imprintingQuality: tagImprinting,
+        mutationsMale: tagMutationsMale,
+        mutationsFemale: tagMutationsFemale,
+        babyAge: tagBabyAge,
+        dinoLevel: tagLevel,
+        colorSet0: tagColor0,
+        colorSet1: tagColor1,
+        colorSet2: tagColor2,
+        colorSet3: tagColor3,
+        colorSet4: tagColor4,
+        colorSet5: tagColor5,
+
+        statHealth: tagHealth,
+        statStamina: tagStamina,
+        statTorpidity: tagTorpidity,
+        statOxygen: tagOxygen,
+        statFood: tagFood,
+        statWater: tagWater,
+        statTemperature: tagTemperature,
+        statWeight: tagWeight,
+        statMelee: tagMelee,
+        statMovement: tagMovement,
+        statFortitude: tagFortitude,
+        statCrafting: tagCrafting,
+        /*
+        
+        
         isNeutered: tagNeutered,
         tamer: tagTamer,
         imprinter: tagImprinter,

@@ -2,6 +2,17 @@ const keep_alive = require("./keep_alive.js");
 const fs = require('node:fs');
 const Sequelize = require('sequelize');
 const path = require('node:path');
+//const { Configuration, OpenAIApi, OpenAI } = require("openai");
+/*
+import OpenAI from 'openai';
+
+const AIconfig = new OpenAI({
+  organization: "org-Zq5p0F4tp2gpe3q2uFBUnHMB",
+  apikey: process.env['openai_token'],
+});
+
+const openai = new OpenAIApi(AIconfig);
+*/
 
 //const fetch = require('node-fetch');
 
@@ -27,6 +38,7 @@ client.commands = new Collection();
 const token = process.env['token']
 const CLIENT_ID = process.env['client_id']
 const GUILD_ID = process.env['guild_id']
+const ai_token = process.env['openai_token']
 
 // Setting up database
 const sequelize = new Sequelize('database', 'user', 'password', {
@@ -75,6 +87,7 @@ const Tags = sequelize.define('tags', {
 
 client.Tags = Tags;
 client.Fetch = fetch;
+//client.AI = openai;
 //module.exports = { Tags };
 
 //Reads the commands in the commands folder.
@@ -110,6 +123,5 @@ for (const file of eventFiles) {
     client.on(event.name, (...args) => event.execute(...args));
   }
 }
-
 
 client.login(token);
