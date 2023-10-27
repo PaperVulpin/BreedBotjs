@@ -1,4 +1,5 @@
 const keep_alive = require("./keep_alive.js");
+const lookup_species = require("./species_lookup.js");
 const fs = require('node:fs');
 const Sequelize = require('sequelize');
 const path = require('node:path');
@@ -87,6 +88,7 @@ const Tags = sequelize.define('tags', {
 
 client.Tags = Tags;
 client.Fetch = fetch;
+client.LookupSpecies = lookup_species;
 //client.AI = openai;
 //module.exports = { Tags };
 

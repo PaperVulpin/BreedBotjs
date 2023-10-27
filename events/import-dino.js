@@ -18,7 +18,7 @@ module.exports = {
     var tagName, tagSpecies, tagFemale, tagLevel, tagNeutered, tagTamer, tagImprinter, tagImprinting, tagMutationsMale, 
 tagMutationsFemale, tagBabyAge, tagColor0, tagColor1, tagColor2, tagColor3, tagColor4, tagColor5,
 tagHealth, tagStamina, tagTorpidity, tagOxygen, tagFood, tagWater, tagTemperature, tagWeight,
-tagMelee, tagMovement, tagFortitude, tagCrafting = "";
+tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass = "";
     
     if (message.author.bot) return;
 
@@ -47,8 +47,19 @@ tagMelee, tagMovement, tagFortitude, tagCrafting = "";
         console.log('Tag name: ' + tagName);
         // Do something with tagName
       }
+      if (line.includes('DinoClass')) {
+        dinoClass = line.split('=')[1].trim();
+        console.log('Dino class: ' + dinoClass);
+        // Do something with tagName
+      }
       if (line.includes('DinoNameTag')) {
         tagSpecies = line.split('=')[1].trim();
+        if (dinoClass.includes('Bionic')) {
+          tagSpecies = 'Tek ' + tagSpecies;
+        }
+        else if (dinoClass.includes('Crystal') && dinoClass.includes('Blood')) {
+          tagSpecies = 'Blood Crystal ' + tagSpecies;
+        }
         console.log('Tag species: ' + tagSpecies);
         // Do something with tagSpecies
       }
@@ -148,7 +159,7 @@ tagMelee, tagMovement, tagFortitude, tagCrafting = "";
         console.log('Stat Oxygen: ' + tagOxygen);
         // Do something with tagOxygen
       }
-      if (line.includes('food')) {
+      if (line.includes('food') || line.includes('Food')) {
         tagFood = line.split('=')[1].trim();
         console.log('Stat Food: ' + tagFood);
         // Do something with tagFood
