@@ -24,9 +24,11 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass = "";
 
     // get the file's URL
     const file = message.attachments.first()?.url;
+    //if (!file) return;
     console.log('File : ' + file);
     console.log('Attachments: ' + message.attachments);
     if (!file) return console.log('No attached file found');
+    if (!(file.includes('DinoExport') && file.includes('.ini'))) return console.log('Not a dino export.');
 
     const res = await axios.get(file).catch(e => console.error);
     
@@ -59,6 +61,15 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass = "";
         }
         else if (dinoClass.includes('Crystal') && dinoClass.includes('Blood')) {
           tagSpecies = 'Blood Crystal ' + tagSpecies;
+        }
+        else if (dinoClass.includes('Crystal') && dinoClass.includes('Ember')) {
+          tagSpecies = 'Ember Crystal ' + tagSpecies;
+        }
+        else if (dinoClass.includes('Crystal') && dinoClass.includes('WS_C')) {
+          tagSpecies = 'Tropical Crystal ' + tagSpecies;
+        }
+        else if (dinoClass.includes('Tek') && dinoClass.includes('Wyvern')) { //Need to see this tested!!
+          tagSpecies = 'Tek ' + tagSpecies;
         }
         console.log('Tag species: ' + tagSpecies);
         // Do something with tagSpecies
@@ -276,12 +287,12 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass = "";
         */
         //
       });
-
+      message.delete();
       return message.channel.send(`Dinosaur imported: ` + tagName + " the level " + tagLevel + " " + tagSpecies);
     }
     catch (error) {
       if (error.name === 'SequelizeUniqueConstraintError') {
-        return message.channel.send('That dino name already exists.');
+        return message.channel.send('That dino name (' + tagName + ') already exists.');
       }
       console.log('add-dino-tag: ' + error);
       return message.channel.send('Something went wrong with adding a dinosaur.');
