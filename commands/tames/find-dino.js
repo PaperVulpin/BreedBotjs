@@ -32,19 +32,20 @@ module.exports = {
       .setTitle(tag.name)
       .setURL(result[0])
       .setAuthor({ name: tag.imprinter ? tag.imprinter + '\'s imprinted ' + result[1] : tag.tamer ? tag.tamer + '\'s tamed ' + result[1] : result[1]/*, iconURL: result[2]*/ })
-      .setDescription('Level ' + tag.dinoLevel + ' ' + ((tag.isNeutered.toLowerCase() === "true") ? 'neutered ' : '') + ((tag.isFemale.toLowerCase() === "true") ? 'female' : 'male'))
+      .setDescription('Level ' + tag.dinoLevel + ' ' + ((tag.isNeutered.toLowerCase() === "true") ? 'neutered ' : '') + ((tag.isFemale.toLowerCase() === "true") ? 'female :female_sign:' : 'male :male_sign:'))
       .setThumbnail(result[2])
       .addFields(
         //{ name: 'Regular field title', value: 'Some value here' },
         //{ name: '\u200B', value: '\u200B' },
         { name: 'Health', value: tag.statHealth.toString(), inline: true },
         { name: 'Stamina', value: tag.statStamina.toString(), inline: true },
-        { name: 'Melee', value: (tag.statMelee * 146.6720869051628).toFixed(1) + '%', inline: true },
+        //{ name: 'Melee', value: (tag.statMelee * 146.6720869051628).toFixed(1) + '%', inline: true },
+        { name: 'Melee', value: (tag.statMelee * 1.0).toFixed(2), inline: true },
         { name: 'Weight', value: tag.statWeight.toString(), inline: true },
         { name: 'Oxygen', value: tag.statOxygen.toString(), inline: true },
         { name: 'Food', value: tag.statFood.toString(), inline: true },
-        { name: 'Water', value: tag.statWater.toString(), inline: true },
-        { name: 'Movement', value: tag.statMovement.toString(), inline: true }
+        //{ name: 'Water', value: tag.statWater.toString(), inline: true },
+        //{ name: 'Movement', value: tag.statMovement.toString(), inline: true }
         //{ name: 'Temperature', value: tag.statTemperature, inline: true },
         //{ name: 'Torpidity', value: tag.statTorpidity, inline: true }
         //
