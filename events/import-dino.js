@@ -18,7 +18,7 @@ module.exports = {
     var tagName, tagSpecies, tagFemale, tagLevel, tagNeutered, tagTamer, tagImprinter, tagImprinting, tagMutationsMale, 
 tagMutationsFemale, tagBabyAge, tagColor0, tagColor1, tagColor2, tagColor3, tagColor4, tagColor5,
 tagHealth, tagStamina, tagTorpidity, tagOxygen, tagFood, tagWater, tagTemperature, tagWeight,
-tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass = "";
+tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass, result = "";
     
     if (message.author.bot) return;
 
@@ -253,42 +253,9 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass = "";
         statMovement: tagMovement,
         statFortitude: tagFortitude,
         statCrafting: tagCrafting,
-        /*
-        
-        
-        isNeutered: tagNeutered,
-        tamer: tagTamer,
-        imprinter: tagImprinter,
-        imprintingQuality: tagImprinting,
-        mutationsMale: tagMutationsMale,
-        mutationsFemale: tagMutationsFemale,
-        babyAge: tagBabyAge,
-        dinoLevel: tagLevel,
-        
-        colorSet0: tagColor0,
-        colorSet1: tagColor1,
-        colorSet2: tagColor2,
-        colorSet3: tagColor3,
-        colorSet4: tagColor4,
-        colorSet5: tagColor5,
-        
-        statHealth: tagHealth,
-        statStamina: tagStamina,
-        statTorpidity: tagTorpidity,
-        statOxygen: tagOxygen,
-        statFood: tagFood,
-        statWater: tagWater,
-        statTemperature: tagTemperature,
-        statWeight: tagWeight,
-        statMelee: tagMelee,
-        statMovement: tagMovement,
-        statFortitude: tagFortitude,
-        statCrafting: tagCrafting,
-        */
-        //
       });
       const species = tag.speciesTag;
-      const result = message.client.LookupSpecies.lookup(species); //lookup(species);
+      result = message.client.LookupSpecies.lookup(species); //lookup(species);
       message.delete();
       
       
@@ -311,6 +278,8 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass = "";
         { name: 'Weight', value: tag.statWeight.toString(), inline: true },
         { name: 'Oxygen', value: tag.statOxygen.toString(), inline: true },
         { name: 'Food', value: tag.statFood.toString(), inline: true },
+        { name: 'Paternal Mutations', value: tag.mutationsMale.toString(), inline: true },
+        { name: 'Maternal Mutations', value: tag.mutationsFemale.toString(), inline: true },
         //{ name: 'Water', value: tag.statWater.toString(), inline: true },
         //{ name: 'Movement', value: tag.statMovement.toString(), inline: true }
         //{ name: 'Temperature', value: tag.statTemperature, inline: true },
@@ -331,6 +300,11 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass = "";
         return message.channel.send('That dino name (' + tagName + ') already exists.');
       }
       console.log('add-dino-tag: ' + error);
+      if (result === 'Unknown species.'){
+        console.log('Success!');
+        message.client.Tags.destroy({ where: {name: tagName } });
+        return message.channel.send('Something went wrong with adding a dinosaur. (' + tagSpecies + ' was not found in the species-lookup, either not added yet or not matching the DinoNameTag in the export .ini.)');
+      }
       return message.channel.send('Something went wrong with adding a dinosaur.');
     }
   }

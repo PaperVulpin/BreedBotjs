@@ -28,6 +28,8 @@ module.exports = {
         return [ 'https://www.dododex.com/taming/astrocetus', 'Astrocetus', 'https://arkids.net/image/creature/120/astrocetus.png' , 'https://i.ibb.co/pj1Zznk/parasaur.webphttps://i.ibb.co/8BmygPC/astrocetus.webp' ];
       case 'Astrodelphis'://
         return [ 'https://www.dododex.com/taming/astrodelphis', 'Astrodelphis', 'https://arkids.net/image/creature/120/astrodelphis.png' , 'https://i.ibb.co/bLX3nk6/astrodelphis.webp' ];
+      case 'Baryonyx':
+        return [ 'https://www.dododex.com/taming/baryonyx', 'Baryonyx', 'https://arkids.net/image/creature/120/baryonyx.png' , 'https://i.ibb.co/XtfT73p/baryonyx.webp' ];
       case 'Basilisk'://
         return [ 'https://www.dododex.com/taming/basilisk', 'Basilisk', 'https://arkids.net/image/creature/120/basilisk.png' , 'https://i.ibb.co/nj34vsY/basilisk.webp' ];
       case 'Toad':
@@ -40,10 +42,10 @@ module.exports = {
         return [ 'https://www.dododex.com/taming/bulbdog', 'Bulbdog', 'https://arkids.net/image/creature/120/bulbdog.png' , 'https://i.ibb.co/sHrLJm0/bulbdog.webp' ];
       case 'Carcharodontosaurus'://
         return [ 'https://www.dododex.com/taming/carcharodontosaurus', 'Carcharodontosaurus', 'https://arkids.net/image/creature/120/carcharodontosaurus.png' , 'https://i.ibb.co/99BmK6D/carcharodontosaurus.webp' ];
-      case 'Carnotaurus'://
-        return [ 'https://www.dododex.com/taming/carnotaurus', 'Carnotaurus', 'https://arkids.net/image/creature/120/carnotaurus.png' , 'https://i.ibb.co/Mg0TmN3/carnotaurus.webp' ];
+      case 'Carno':
+        return [ 'https://www.dododex.com/taming/carnotaurus', 'Carnotaurus (Carno)', 'https://arkids.net/image/creature/120/carnotaurus.png' , 'https://i.ibb.co/Mg0TmN3/carnotaurus.webp' ];
       case 'Beaver':
-        return [ 'https://www.dododex.com/taming/castoroides', 'Castoroides', 'https://arkids.net/image/creature/120/castoroides.png' , 'https://i.ibb.co/TK3mHLx/castoroides.webp' ];
+        return [ 'https://www.dododex.com/taming/castoroides', 'Castoroides (Beaver)', 'https://arkids.net/image/creature/120/castoroides.png' , 'https://i.ibb.co/TK3mHLx/castoroides.webp' ];
       case 'Chalicotherium'://
         return [ 'https://www.dododex.com/taming/chalicotherium', 'Chalicotherium', 'https://arkids.net/image/creature/120/chalicotherium.png' , 'https://i.ibb.co/DpmNHBY/chalicotherium.webp' ];
       case 'Compy'://
@@ -120,8 +122,8 @@ module.exports = {
         return [ 'https://www.dododex.com/taming/iguanodon', 'Iguanodon', 'https://arkids.net/image/creature/120/iguanodon.png' , 'https://i.ibb.co/fpp8L3K/iguanodon.webp' ];
       case 'Jerboa'://
         return [ 'https://www.dododex.com/taming/jerboa', 'Jerboa', 'https://arkids.net/image/creature/120/jerboa.png' , 'https://i.ibb.co/R699tV9/jerboa.webp' ];
-      case 'Kairuku'://
-        return [ 'https://www.dododex.com/taming/kairuku', 'Kairuku', 'https://arkids.net/image/creature/120/kairuku.png' , 'https://i.ibb.co/3CdRK87/kairuku.webp' ];
+      case 'Kairu':
+        return [ 'https://www.dododex.com/taming/kairuku', 'Kairuku (Kairu)', 'https://arkids.net/image/creature/120/kairuku.png' , 'https://i.ibb.co/3CdRK87/kairuku.webp' ];
       case 'Kaprosuchus'://
         return [ 'https://www.dododex.com/taming/kaprosuchus', 'Kaprosuchus', 'https://arkids.net/image/creature/120/kaprosuchus.png' , 'https://i.ibb.co/Jmdf7Ty/kaprosuchus.webp' ];
       case 'Karkinos'://
@@ -166,14 +168,26 @@ module.exports = {
         return [ 'https://www.dododex.com/taming/otter', 'Otter', 'https://arkids.net/image/creature/120/otter.png' , 'https://i.ibb.co/TT31Lf4/otter.webp' ];
       case 'Oviraptor'://
         return [ 'https://www.dododex.com/taming/oviraptor', 'Oviraptor', 'https://arkids.net/image/creature/120/oviraptor.png' , 'https://i.ibb.co/1RPQ3cn/oviraptor.webp' ];
+      case 'Ovis'://
+        return [ 'https://www.dododex.com/taming/ovis', 'Ovis', 'https://arkids.net/image/creature/120/ovis.png' , 'https://i.ibb.co/jrfv10g/ovis.webp' ];
+      case 'Pachy'://
+        return [ 'https://www.dododex.com/taming/pachy', 'Pachycephalosaurus (Pachy)', 'https://arkids.net/image/creature/120/pachy.png' , 'https://i.ibb.co/TBFRX05/pachy.webp' ];
+      case 'Pachyrhinosaurus'://
+        return [ 'https://www.dododex.com/taming/pachyrhinosaurus', 'Pachyrhinosaurus', 'https://arkids.net/image/creature/120/pachyrhinosaurus.png' , 'https://i.ibb.co/YcVDpPM/pachyrhinosaurus.webp' ];
+      case 'Paracer'://
+        return [ 'https://www.dododex.com/taming/paracer', 'Paraceratherium (Paracer)', 'https://arkids.net/image/creature/120/paraceratherium.png' , 'https://i.ibb.co/WP89xzd/paracer.webp' ];
       case 'Para':
         return [ 'https://www.dododex.com/taming/parasaur', 'Parasaurolophus (Para)', 'https://arkids.net/image/creature/120/parasaurolophus.png' , 'https://i.ibb.co/pj1Zznk/parasaur.webp' ];
+      case 'Pegomastax'://
+        return [ 'https://www.dododex.com/taming/pegomastax', 'Pegomastax', 'https://arkids.net/image/creature/120/pegomastax.png' , 'https://i.ibb.co/ftnVHr2/pegomastax.webp' ];
       case 'Pelagornis'://
         return [ 'https://www.dododex.com/taming/pelagornis', 'Pelagornis', 'https://arkids.net/image/creature/120/pelagornis.png' , 'https://i.ibb.co/Wc0nq03/pelagornis.webp' ];
       case 'Phiomia':
         return [ 'https://www.dododex.com/taming/phiomia', 'Phiomia', 'https://arkids.net/image/creature/120/phiomia.png' , 'https://i.ibb.co/86P6n2J/phiomia.webp' ];
       case 'Phoenix'://
         return [ 'https://www.dododex.com/taming/phoenix', 'Phoenix', 'https://arkids.net/image/creature/120/pelagornis.png' , 'https://i.ibb.co/25xKfBM/phoenix.webp' ];
+      case 'Plesiosaur':
+        return [ 'https://www.dododex.com/taming/plesiosaur', 'Plesiosaur', 'https://arkids.net/image/creature/120/plesiosaur.png' , 'https://i.ibb.co/2WSLGPw/plesiosaur.webp' ];
       case 'Ptera':
         return [ 'https://www.dododex.com/taming/pteranodon', 'Pteranodon', 'https://arkids.net/image/creature/120/pteranodon.png' , 'https://i.ibb.co/P98s8f4/pteranodon.webp' ];
       case 'Quetzal'://
@@ -190,6 +204,8 @@ module.exports = {
         return [ 'https://www.dododex.com/taming/rhyniognatha', 'Rhyniognatha', 'https://arkids.net/image/creature/120/eden-direwolf.png' , 'https://i.ibb.co/Vgthb1H/rhyniognatha.webp' ];
       case 'Sinomacrops'://
         return [ 'https://www.dododex.com/taming/sinomacrops', 'Sinomacrops', 'https://arkids.net/image/creature/120/sinomacrops.png' , 'https://i.ibb.co/BjJ8RdP/sinomacrops.webp' ];
+      case 'Spino':
+        return [ 'https://www.dododex.com/taming/spinosaur', 'Spinosaurus (Spino)', 'https://arkids.net/image/creature/120/spino.png' , 'https://i.ibb.co/XkdNrHn/spinosaur.webp' ];
       case 'Snow Owl'://
         return [ 'https://www.dododex.com/taming/snowowl', 'Snow Owl', 'https://arkids.net/image/creature/120/snow-owl.png' , 'https://i.ibb.co/JxWM2cz/snowowl.webp' ];
       case 'Tapejara'://
