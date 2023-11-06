@@ -10,27 +10,36 @@ module.exports = {
       option.setName('species')
         .setDescription('Show only the specified species.'))
   ,
-  async execute(interaction) { 
-    //const tagList = await interaction.client.Tags.findAll({ attributes: ['name'] });
+  async execute(interaction) {
     const tagList = await interaction.client.Tags.findAll({ attributes: ['name', 'speciesTag', 'statHealth', 'statStamina', 'statWeight', 'statMelee', 'isFemale', 'dinoLevel', 'mutationsMale', 'mutationsFemale'] });
     
-    const species = interaction.options.getString('species');
+    var species = interaction.options.getString('species');
 
+    //Replaces similar species names with the one matching the DinoData.ini
+    if (species === 'Argentavis' || species === 'Argy') {
+      species = 'Argent';
+    }
+    else if (species === 'Ankylosaurus' || species === 'Anklyo') {
+      species = 'Anky';
+    }
+
+    //Creates a list of all the dinosaurs in the database, showing only matching species
     if (species !== null) {
       const filtered = tagList.filter(tag => tag.speciesTag === species);
-      var result = '';
+      let result = '';
 
-      filtered.forEach((tag) => result = (result + ((tag.isFemale.toLowerCase() === "true") ? ':female_sign: ' : ':male_sign: ') + tag.name + ' - Lv. ' + tag.dinoLevel + ': <:Health:1168864273779404861>: ' + (tag.statHealth).toFixed(2) + ', <:Stamina:1168864280771313694>: ' + (tag.statStamina).toFixed(2) + ', <:Melee:1168864277097103413>: ' + (tag.statMelee).toFixed(2) + ', <:Weight:1168864283250151494>: ' + (tag.statWeight).toFixed(2) + ((tag.mutationsMale !== 0) ? (', Paternal Mutations: ' + tag.mutationsMale) : '' ) + ((tag.mutationsFemale !== 0) ? (', Maternal Mutations: ' + tag.mutationsFemale) : '' ) + '\n'));
-      
-      
+      filtered.sort((a, b) => a.dinoLevel - b.dinoLevel);
+
+      filtered.forEach((tag) => {
+        result += ((tag.isFemale.toLowerCase() === "true") ? ':female_sign: ' : ':male_sign: ') + tag.name + ' - Lv. ' + tag.dinoLevel + ': <:Health:1168864273779404861>: ' + (tag.statHealth).toFixed(2) + ', <:Stamina:1168864280771313694>: ' + (tag.statStamina).toFixed(2) + ', <:Melee:1168864277097103413>: ' + (tag.statMelee).toFixed(2) + ', <:Weight:1168864283250151494>: ' + (tag.statWeight).toFixed(2) + ((tag.mutationsMale !== 0) ? (', Paternal Mutations: ' + tag.mutationsMale) : '') + ((tag.mutationsFemale !== 0) ? (', Maternal Mutations: ' + tag.mutationsFemale) : '') + '\n';
+      });
+
       if (filtered.length === 0) {
         await interaction.reply(`No dinosaurs found with the species ${species}.`);
       } else {
-        //result = 'Dinosaurs of the species ' + species + ':\n' + result;
         if (result.length > 1900) {
           result = 'Dinosaurs of the species ' + species + ':\n' + result;
-          var charToSplit = result;
-          //
+          let charToSplit = result;
           const messageChunks = [];
           let currentChunk = "";
           const splitLines = charToSplit.split("\n");
@@ -44,40 +53,59 @@ module.exports = {
             }
           });
 
-          if (currentChunk !== "") {
+          if ((currentChunk !== "") && (currentChunk !== "\n")) {
             messageChunks.push(currentChunk);
           }
 
-          messageChunks.forEach(async chunk => {
-            //await interaction.reply(chunk);
+          for (const chunk of messageChunks) {
             await interaction.channel.send(chunk);
-          });
+          }
           
+
           await interaction.channel.send(splitLines.length + ' ' + species + 's found.');
-          //
-          //
-        }
-        else{
+        } else {
           await interaction.reply(`Dinosaurs of the species ${species}:\n${result}`);
         }
-        
-        //await interaction.reply(`Dinosaurs of the species ${species}:\n${result}`);
       }
-    
     } else {
-      //const speciesList = await interaction.client.Tags.findAll({ attributes: ['speciesTag'] });
-      //speciesList.forEach((species) => console.log(species));
-      /*
-      tagList.forEach((tag) => result = (result + ((tag.isFemale.toLowerCase() === "true") ? ':female_sign: ' : ':male_sign: ') + tag.name + ': ' + '<:Health:1168864273779404861>: ' + (tag.statHealth).toFixed(2) + ', <:Stamina:1168864280771313694>: ' + (tag.statStamina).toFixed(2) + ', <:Melee:1168864277097103413>: ' + (tag.statMelee).toFixed(2) + ', <:Weight:1168864283250151494>: ' + (tag.statWeight).toFixed(2) + '\n'));m
-      var filtered = tagList.filter(tag => tag.speciesTag === species);
-      */
       const tagString = tagList.map(t => t.name).join(', ') || 'No tags set.';
       return interaction.reply('List of dinos: ' + tagString);
-    }
-    
-    
-    
-    //const tagName = interaction.options.getString('name');
-    //const tag = await interaction.client.Tags.findOne({ where: {name: tagName } } );
+
+      //Testing showing list of all dinos, sorted by species
+      /*
+      const speciesList = tagList.map(tag => tag.speciesTag);
+      const uniqueSpecies = speciesList.filter((value, index, self) => {
+        return self.indexOf(value) === index;
+      });
+
+      uniqueSpecies.sort();
+
+      let result = '';
+      let replyChunks = [];
+
+      uniqueSpecies.forEach((species) => {
+        const filtered = tagList.filter(tag => tag.speciesTag === species);
+  
+        filtered.sort((a, b) => a.dinoLevel - b.dinoLevel);
+
+        let chunk = `List of dinosaurs for species ${species}:\n`;
+        filtered.forEach((tag) => {
+          const line = `${tag.name} - Lv. ${tag.dinoLevel}\n`;
+          if (chunk.length + line.length <= 1900) {
+            chunk += line;
+          } else {
+            replyChunks.push(chunk);
+            chunk = line;
+          }
+        });
+
+        replyChunks.push(chunk);
+      });
+
+      for (const chunk of replyChunks) {
+        await interaction.channel.send(chunk);
+      }
+      */
     }
   }
+}

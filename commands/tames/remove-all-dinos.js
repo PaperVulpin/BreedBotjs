@@ -17,7 +17,6 @@ module.exports = {
 
     if (undefinedOnly) {
       const rowCount = await interaction.client.Tags.destroy({ where: { name: null } });
-      
       //if (!rowCount) return interaction.reply('No tags found.');
       return interaction.reply('All undefined dinos deleted.');
     }

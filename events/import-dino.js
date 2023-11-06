@@ -71,6 +71,9 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass, result = "";
         else if (dinoClass.includes('Tek') && dinoClass.includes('Wyvern')) { //Need to see this tested!!
           tagSpecies = 'Tek ' + tagSpecies;
         }
+        else if (dinoClass.includes('Unicorn')) {
+          tagSpecies = 'Unicorn';
+        }
         console.log('Tag species: ' + tagSpecies);
         // Do something with tagSpecies
       }
