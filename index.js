@@ -86,6 +86,14 @@ const Tags = sequelize.define('tags', {
   statCrafting: Sequelize.DOUBLE
 });
 
+// Testing reminders
+const Reminders = sequelize.define('reminders', {
+  user: Sequelize.STRING,
+  time: Sequelize.STRING,
+  reminder: Sequelize.STRING
+});
+// End Reminders
+
 client.Tags = Tags;
 client.Fetch = fetch;
 client.LookupSpecies = lookup_species;

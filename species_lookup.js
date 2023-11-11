@@ -219,7 +219,7 @@ module.exports = {
       case 'Kangaroo':
         return [ 'https://www.dododex.com/taming/procoptodon', 'Procoptodon (Kangaroo)', 'https://arkids.net/image/creature/120/procoptodon.png' , 'https://i.ibb.co/4VSb1RY/procoptodon.webp' ];
       case 'Ptera':
-        return [ 'https://www.dododex.com/taming/pteranodon', 'Pteranodon', 'https://arkids.net/image/creature/120/pteranodon.png' , 'https://i.ibb.co/P98s8f4/pteranodon.webp' ];
+        return [ 'https://www.dododex.com/taming/pteranodon', 'Pteranodon (Ptera)', 'https://arkids.net/image/creature/120/pteranodon.png' , 'https://i.ibb.co/P98s8f4/pteranodon.webp' ];
       case 'Scorpion':
         return [ 'https://www.dododex.com/taming/pulmonoscorpius', 'Pulmonoscorpius (Scorpion)', 'https://arkids.net/image/creature/120/pulmonoscorpius.png' , 'https://i.ibb.co/0QF9PqF/pulmonoscorpius.webp' ];
       case 'Purlovia':

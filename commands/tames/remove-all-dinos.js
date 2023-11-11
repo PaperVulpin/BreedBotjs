@@ -9,6 +9,9 @@ module.exports = {
     .addBooleanOption(option =>
       option.setName('clear-undefined')
         .setDescription('Whether or not to only clear the undefined entries'))
+    .addBooleanOption(option =>
+      option.setName('confirm-delete-all')
+        .setDescription('Type \'True\' to verify you really want to delete all dinosaurs from the database.'))
   ,
   async execute(interaction) { 
     const undefinedOnly = interaction.options.getBoolean('clear-undefined');
@@ -16,9 +19,14 @@ module.exports = {
     console.log("Undefined: " + undefinedOnly);
 
     if (undefinedOnly) {
-      const rowCount = await interaction.client.Tags.destroy({ where: { name: null } });
+      if (interaction.options.getBoolean('confirm-delete-all') === 'True') {
+        const rowCount = await interaction.client.Tags.destroy({ where: { name: null } });
       //if (!rowCount) return interaction.reply('No tags found.');
-      return interaction.reply('All undefined dinos deleted.');
+        return interaction.reply('All undefined dinos deleted.');
+      }
+      else {
+        return interaction.reply('Please try the command again but confirm you want to delete all by typing True in the confirm-delete-all field.');
+      }
     }
     else {
       const rowCount = await interaction.client.Tags.destroy({ where: {} });

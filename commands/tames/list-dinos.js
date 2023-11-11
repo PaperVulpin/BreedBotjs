@@ -11,18 +11,26 @@ module.exports = {
         .setDescription('Show only the specified species.'))
   ,
   async execute(interaction) {
-    const tagList = await interaction.client.Tags.findAll({ attributes: ['name', 'speciesTag', 'statHealth', 'statStamina', 'statWeight', 'statMelee', 'isFemale', 'dinoLevel', 'mutationsMale', 'mutationsFemale'] });
+    const tagList = await interaction.client.Tags.findAll({ attributes: ['name', 'speciesTag', 'statHealth', 'statStamina', 'statWeight', 'statMelee', 'statFood', 'statOxygen', 'isFemale', 'dinoLevel', 'mutationsMale', 'mutationsFemale'] });
     
     var species = interaction.options.getString('species');
 
     //Replaces similar species names with the one matching the DinoData.ini
-    if (species === 'Argentavis' || species === 'Argy') {
+    if (species === 'Argentavis' || species === 'Argy' || species === 'Arg') {
       species = 'Argent';
     }
-    else if (species === 'Ankylosaurus' || species === 'Anklyo') {
+    else if (species === 'Ankylosaurus' || species === 'Anklyo' || species === 'Ank') {
       species = 'Anky';
     }
+    else if (species === 'Araneo') {
+      species = 'Spider';
+    }
+    else if (species === 'Pteranodon') {
+      species = 'Ptera';
+    }
 
+    //Araneo
+    
     //Creates a list of all the dinosaurs in the database, showing only matching species
     if (species !== null) {
       const filtered = tagList.filter(tag => tag.speciesTag === species);
@@ -31,7 +39,8 @@ module.exports = {
       filtered.sort((a, b) => a.dinoLevel - b.dinoLevel);
 
       filtered.forEach((tag) => {
-        result += ((tag.isFemale.toLowerCase() === "true") ? ':female_sign: ' : ':male_sign: ') + tag.name + ' - Lv. ' + tag.dinoLevel + ': <:Health:1168864273779404861>: ' + (tag.statHealth).toFixed(2) + ', <:Stamina:1168864280771313694>: ' + (tag.statStamina).toFixed(2) + ', <:Melee:1168864277097103413>: ' + (tag.statMelee).toFixed(2) + ', <:Weight:1168864283250151494>: ' + (tag.statWeight).toFixed(2) + ((tag.mutationsMale !== 0) ? (', Paternal Mutations: ' + tag.mutationsMale) : '') + ((tag.mutationsFemale !== 0) ? (', Maternal Mutations: ' + tag.mutationsFemale) : '') + '\n';
+        //result += ((tag.isFemale.toLowerCase() === "true") ? ':female_sign: ' : ':male_sign: ') + tag.name + ' - Lv. ' + tag.dinoLevel + ': <:Health:1168864273779404861>: ' + (tag.statHealth).toFixed(2) + ', <:Stamina:1168864280771313694>: ' + (tag.statStamina).toFixed(2) + ', <:Melee:1168864277097103413>: ' + (tag.statMelee).toFixed(2) + ', <:Weight:1168864283250151494>: ' + (tag.statWeight).toFixed(2) + ', <:Food:1168864087883653170>: ' + (tag.statFood).toFixed(2) + ', <:Oxygen:1168864278485413928>: ' + (tag.statOxygen).toFixed(2) + ((tag.mutationsMale !== 0) ? (', Paternal Mutations: ' + tag.mutationsMale) : '') + ((tag.mutationsFemale !== 0) ? (', Maternal Mutations: ' + tag.mutationsFemale) : '') + '\n';
+        result += ((tag.isFemale === "true" || tag.isFemale === "True") ? ':female_sign: ' : ':male_sign: ') + tag.name + ' - Lv. ' + tag.dinoLevel + ': <:Health:1168864273779404861>: ' + (tag.statHealth).toFixed(2) + ', <:Stamina:1168864280771313694>: ' + (tag.statStamina).toFixed(2) + ', <:Melee:1168864277097103413>: ' + (tag.statMelee).toFixed(2) + ', <:Weight:1168864283250151494>: ' + (tag.statWeight).toFixed(2) + ', <:Food:1168864087883653170>: ' + (tag.statFood).toFixed(2) + ', <:Oxygen:1168864278485413928>: ' + (tag.statOxygen).toFixed(2) + ((tag.mutationsMale !== 0) ? (', Paternal Mutations: ' + tag.mutationsMale) : '') + ((tag.mutationsFemale !== 0) ? (', Maternal Mutations: ' + tag.mutationsFemale) : '') + '\n';
       });
 
       if (filtered.length === 0) {

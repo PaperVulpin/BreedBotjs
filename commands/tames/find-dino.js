@@ -32,7 +32,8 @@ module.exports = {
       .setTitle(tag.name)
       .setURL(result[0])
       .setAuthor({ name: tag.imprinter ? tag.imprinter + '\'s imprinted ' + result[1] : tag.tamer ? tag.tamer + '\'s tamed ' + result[1] : result[1]/*, iconURL: result[2]*/ })
-      .setDescription('Level ' + tag.dinoLevel + ' ' + ((tag.isNeutered.toLowerCase() === "true") ? 'neutered ' : '') + ((tag.isFemale.toLowerCase() === "true") ? 'female :female_sign:' : 'male :male_sign:'))
+      //.setDescription('Level ' + tag.dinoLevel + ' ' + ((tag.isNeutered.toLowerCase() === "true") ? 'neutered ' : '') + ((tag.isFemale.toLowerCase() === "true") ? 'female :female_sign:' : 'male :male_sign:'))
+      .setDescription('Level ' + tag.dinoLevel + ' ' + ((tag.isNeutered === "true" || tag.isNeutered === "True") ? 'neutered ' : '') + ((tag.isFemale === "true" || tag.isFemale === "True") ? 'female :female_sign:' : 'male :male_sign:'))
       .setThumbnail(result[2])
       .addFields(
         //{ name: 'Regular field title', value: 'Some value here' },
