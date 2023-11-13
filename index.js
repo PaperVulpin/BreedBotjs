@@ -1,5 +1,8 @@
+// Run 'node deploy-commands.js' in Shell to deply new commands.
+
 const keep_alive = require("./keep_alive.js");
 const lookup_species = require("./species_lookup.js");
+//const reminderSystem = require("./remind.js/reminderTag");
 const fs = require('node:fs');
 const Sequelize = require('sequelize');
 const path = require('node:path');
@@ -86,15 +89,51 @@ const Tags = sequelize.define('tags', {
   statCrafting: Sequelize.DOUBLE
 });
 
+
 // Testing reminders
-const Reminders = sequelize.define('reminders', {
+const RemindersTags = sequelize.define('reminders', {
   user: Sequelize.STRING,
   time: Sequelize.STRING,
   reminder: Sequelize.STRING
 });
+
+
+setInterval(async () => {
+  // Add this line of code to synchronize the model with the database
+  await RemindersTags.sync();
+  
+  //console.log('Reminders checked: ' + RemindersTags);
+  const reminders = await RemindersTags.findAll();
+  if (reminders.length === 0){
+    //console.log('There are no reminders.');
+    return;
+  }
+  else {
+    //console.log('Going through reminders.');
+    reminders.forEach(async reminder => {
+      if (reminder.time > Date.now()) return;
+
+      const user = await client.users.fetch(reminder.user);
+
+      user?.send({
+        content: `${user}, you asked to be reminded about: \'${reminder.reminder}\'`
+      }).catch(err => {return;});
+
+      await RemindersTags.destroy({
+        where: {
+          time: reminder.time,
+          user: user.id,
+          reminder: reminder.reminder
+        }
+      });
+    })
+  }
+}, 1000 * 5);
+
 // End Reminders
 
 client.Tags = Tags;
+client.RemindersTags = RemindersTags;
 client.Fetch = fetch;
 client.LookupSpecies = lookup_species;
 //client.AI = openai;

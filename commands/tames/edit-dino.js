@@ -168,7 +168,7 @@ module.exports = {
       }, { where: {name: currentName } });
       //return interaction.reply(`Dino ${currentName} editted. Values changed:` + (interaction.options.getString('change-name') === null ? '' : '\nName changed to : ' + interaction.options.getString('change-name')) + (interaction.options.getString('species') === null ? '' : 'Species changed to : ' + interaction.options.getString('species')) ;
       
-      return interaction.reply(`Dino ${currentName} editted. Values changed:` + 
+      return interaction.reply(`Dino ${currentName} editted, values changed:` + 
 	(interaction.options.getString('change-name') === null ? '' : '\nName changed to : ' + interaction.options.getString('change-name')) + 
 	(interaction.options.getString('species') === null ? '' : 'Species changed to : ' + interaction.options.getString('species')) +
 	(interaction.options.getBoolean('female') === null ? '' : '\nIs female changed to : ' + interaction.options.getBoolean('female')) +
