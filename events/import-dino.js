@@ -292,7 +292,8 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass, result = "";
       //.addFields({ name: 'Inline field title', value: 'Some value here', inline: true })
       .setImage(result[3])
       .setTimestamp()
-      .setFooter({ text: 'Test footer', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+      //.setFooter({ text: 'Test footer', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+      .setFooter({ text: message.author.globalName + '\'s ' + species, iconURL: message.author.displayAvatarURL() });
 
       //return interaction.reply({ embeds: [exampleEmbed] });
       return message.channel.send({ embeds: [exampleEmbed] });
