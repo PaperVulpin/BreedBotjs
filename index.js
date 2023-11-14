@@ -2,6 +2,7 @@
 
 const keep_alive = require("./keep_alive.js");
 const lookup_species = require("./species_lookup.js");
+const lookup_color = require("./color_lookup.js");
 //const reminderSystem = require("./remind.js/reminderTag");
 const fs = require('node:fs');
 const Sequelize = require('sequelize');
@@ -136,6 +137,7 @@ client.Tags = Tags;
 client.RemindersTags = RemindersTags;
 client.Fetch = fetch;
 client.LookupSpecies = lookup_species;
+client.LookupColor = lookup_color;
 //client.AI = openai;
 //module.exports = { Tags };
 

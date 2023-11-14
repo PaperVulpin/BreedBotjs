@@ -259,8 +259,13 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass, result = "";
       });
       const species = tag.speciesTag;
       result = message.client.LookupSpecies.lookup(species); //lookup(species);
+      const colorRegion0 = message.client.LookupColor.lookup(tag.colorSet0);
+      const colorRegion1 = message.client.LookupColor.lookup(tag.colorSet1);
+      const colorRegion2 = message.client.LookupColor.lookup(tag.colorSet2);
+      const colorRegion3 = message.client.LookupColor.lookup(tag.colorSet3);
+      const colorRegion4 = message.client.LookupColor.lookup(tag.colorSet4);
+      const colorRegion5 = message.client.LookupColor.lookup(tag.colorSet5);
       message.delete();
-      
       
       console.log(result);
 
@@ -283,6 +288,7 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass, result = "";
         { name: 'Food', value: tag.statFood.toString(), inline: true },
         { name: 'Paternal Mutations', value: tag.mutationsMale.toString(), inline: true },
         { name: 'Maternal Mutations', value: tag.mutationsFemale.toString(), inline: true },
+        { name: 'Color Regions', value: '1: ' + colorRegion0[1] + ' 2: ' + colorRegion1[1] + ' 3: ' + colorRegion2[1] + ' 4: ' + colorRegion3[1] + ' 5: ' + colorRegion4[1] + ' 6: ' + colorRegion5[1] },
         //{ name: 'Water', value: tag.statWater.toString(), inline: true },
         //{ name: 'Movement', value: tag.statMovement.toString(), inline: true }
         //{ name: 'Temperature', value: tag.statTemperature, inline: true },

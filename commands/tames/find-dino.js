@@ -25,6 +25,12 @@ module.exports = {
     if (tag) {
       const species = tag.speciesTag;
       const result = interaction.client.LookupSpecies.lookup(species); //lookup(species);
+      const colorRegion0 = interaction.client.LookupColor.lookup(tag.colorSet0);
+      const colorRegion1 = interaction.client.LookupColor.lookup(tag.colorSet1);
+      const colorRegion2 = interaction.client.LookupColor.lookup(tag.colorSet2);
+      const colorRegion3 = interaction.client.LookupColor.lookup(tag.colorSet3);
+      const colorRegion4 = interaction.client.LookupColor.lookup(tag.colorSet4);
+      const colorRegion5 = interaction.client.LookupColor.lookup(tag.colorSet5);
       console.log(result);
       
       const exampleEmbed = new EmbedBuilder()
@@ -45,6 +51,9 @@ module.exports = {
         { name: 'Weight', value: tag.statWeight.toString(), inline: true },
         { name: 'Oxygen', value: tag.statOxygen.toString(), inline: true },
         { name: 'Food', value: tag.statFood.toString(), inline: true },
+        { name: 'Paternal Mutations', value: tag.mutationsMale.toString(), inline: true },
+        { name: 'Maternal Mutations', value: tag.mutationsFemale.toString(), inline: true },
+        { name: 'Color Regions', value: '0: ' + colorRegion0[1] + ' 1: ' + colorRegion1[1] + ' 2: ' + colorRegion2[1] + ' 3: ' + colorRegion3[1] + ' 4: ' + colorRegion4[1] + ' 5: ' + colorRegion5[1] },
         //{ name: 'Water', value: tag.statWater.toString(), inline: true },
         //{ name: 'Movement', value: tag.statMovement.toString(), inline: true }
         //{ name: 'Temperature', value: tag.statTemperature, inline: true },
@@ -54,7 +63,8 @@ module.exports = {
       //.addFields({ name: 'Inline field title', value: 'Some value here', inline: true })
       .setImage(result[3])
       .setTimestamp()
-      .setFooter({ text: 'Test footer', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+      .setFooter({ text: interaction.user.globalName + '\'s ' + species, iconURL: interaction.user.displayAvatarURL() });
+      //.setFooter({ text: 'Test footer', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
 
       return interaction.reply({ embeds: [exampleEmbed] });
 
