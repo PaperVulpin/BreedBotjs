@@ -15,13 +15,7 @@ module.exports = {
     const tagName = interaction.options.getString('name');
      
     const tag = await interaction.client.Tags.findOne({ where: {name: tagName } } );
-    /*
-    console.log("N: " + tag.isNeutered + " F : " + tag.isFemale);
-    console.log(tag.isNeutered.toLowerCase() === "true");
-    console.log(tag.isNeutered.toLowerCase() == "true");
-    console.log(tag.isFemale.toLowerCase() === "true");
-    console.log(tag.isFemale.toLowerCase() == "true");
-    */
+
     if (tag) {
       const species = tag.speciesTag;
       const result = interaction.client.LookupSpecies.lookup(species); //lookup(species);

@@ -207,10 +207,14 @@ module.exports = {
         return [ 'Custard', '<:Custard:1174080729760682044>', '99' ];
       case '(R=0.904661,G=1.000000,B=0.533276,A=0.000000)':
         return [ 'Cream', '<:Cream:1174094010428694538>', '100' ];
-        //
+      // Mutated Colors Manually Found and Added
+      case '(R=0.033105,G=0.000000,B=0.033105,A=1.000000)':
+        return [ 'MutatedPurple1', '<:MutatedPurple1:1174260997846994944>', 'N/A' ];
+      case '(R=0.450786,G=0.693872,B=0.266356,A=1.000000)':
+        return [ 'MutatedGreen1', '<:MutatedGreen1:1174261017501503509>', 'N/A' ];
+      //      
       case '(R=0.000000,G=0.000000,B=0.000000,A=1.000000)': //No Color
         return [ 'No Color', '<:NoColor:1174024382637682719>', '0' ];
-        //
       default:
         return [ 'Color Not Recognized', ':question:', '0' ];
     }
