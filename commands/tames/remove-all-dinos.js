@@ -15,11 +15,12 @@ module.exports = {
   ,
   async execute(interaction) { 
     const undefinedOnly = interaction.options.getBoolean('clear-undefined');
+    const confirmDelete = interaction.options.getBoolean('confirm-delete-all');
 
     console.log("Undefined: " + undefinedOnly);
 
     if (undefinedOnly) {
-      if (interaction.options.getBoolean('confirm-delete-all') === 'True') {
+      if (confirmDelete) {
         const rowCount = await interaction.client.Tags.destroy({ where: { name: null } });
       //if (!rowCount) return interaction.reply('No tags found.');
         return interaction.reply('All undefined dinos deleted.');

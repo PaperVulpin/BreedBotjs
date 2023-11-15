@@ -208,10 +208,20 @@ module.exports = {
       case '(R=0.904661,G=1.000000,B=0.533276,A=0.000000)':
         return [ 'Cream', '<:Cream:1174094010428694538>', '100' ];
       // Mutated Colors Manually Found and Added
+      /*
+      case 'XXX':
+        return [ 'COLORNAME', 'COLOREMOJI', 'N/A' ];
+      */
       case '(R=0.033105,G=0.000000,B=0.033105,A=1.000000)':
         return [ 'MutatedPurple1', '<:MutatedPurple1:1174260997846994944>', 'N/A' ];
       case '(R=0.450786,G=0.693872,B=0.266356,A=1.000000)':
         return [ 'MutatedGreen1', '<:MutatedGreen1:1174261017501503509>', 'N/A' ];
+      case '(R=0.693872,G=0.266356,B=0.266356,A=1.000000)':
+        return [ 'MutatedPink1', '<:MutatedPink1:1174427639512043611>', 'N/A' ];
+      case '(R=0.791298,G=0.584079,B=0.171441,A=1.000000)':
+        return [ 'MutatedYellow1', '<:MutatedYellow1:1174429952179961866>' , 'N/A' ];
+      case '(R=1.000000,G=0.485150,B=0.171441,A=1.000000)':
+        return [ 'MutatedOrange1', '<:MutatedOrange1:1174469303261728830>', 'N/A' ];
       //      
       case '(R=0.000000,G=0.000000,B=0.000000,A=1.000000)': //No Color
         return [ 'No Color', '<:NoColor:1174024382637682719>', '0' ];
