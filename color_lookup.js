@@ -222,11 +222,15 @@ module.exports = {
         return [ 'MutatedYellow1', '<:MutatedYellow1:1174429952179961866>' , 'N/A' ];
       case '(R=1.000000,G=0.485150,B=0.171441,A=1.000000)':
         return [ 'MutatedOrange1', '<:MutatedOrange1:1174469303261728830>', 'N/A' ];
+      case '(R=1.000000,G=0.171441,B=0.171441,A=1.000000)':
+        return [ 'MutatedPink2', '<:MutatedPink2:1174479850095005806>', 'N/A' ];
+      case '(R=0.262251,G=0.262251,B=0.693872,A=1.000000)':
+        return [ 'MutatedPurple2', '<:MutatedPurple2:1174949683932696576>', 'N/A' ];
       //      
       case '(R=0.000000,G=0.000000,B=0.000000,A=1.000000)': //No Color
         return [ 'No Color', '<:NoColor:1174024382637682719>', '0' ];
       default:
-        return [ 'Color Not Recognized', ':question:', '0' ];
+        return [ 'Color Not Recognized', '<:UnknownColor:1174478951415021698>', '0' ];
     }
   }
 }

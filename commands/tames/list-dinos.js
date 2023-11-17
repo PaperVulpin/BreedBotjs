@@ -29,6 +29,9 @@ module.exports = {
     else if (species === 'Araneo') {
       species = 'Spider';
     }
+    else if (species === 'Giganotosaurus') {
+      species = 'Gigant';
+    }
     else if (species === 'Pteranodon') {
       species = 'Ptera';
     }
