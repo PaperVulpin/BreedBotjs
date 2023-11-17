@@ -215,15 +215,6 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass, result = "";
       }
     });
 
-
-    
-    //console.log('res: ', dataImport);
-    //console.log(message.client);
-
-    
-    
-    //
-
     try {   
       const tag = await message.client.Tags.create({
         name: tagName,
@@ -288,6 +279,7 @@ tagMelee, tagMovement, tagFortitude, tagCrafting, dinoClass, result = "";
         { name: 'Food', value: tag.statFood.toString(), inline: true },
         { name: 'Paternal Mutations', value: tag.mutationsMale.toString(), inline: true },
         { name: 'Maternal Mutations', value: tag.mutationsFemale.toString(), inline: true },
+        { name: 'Imprinting Quality', value: (tag.imprintingQuality * 100).toString() + '%', inline: true },
         { name: 'Color Regions', value: '0: ' + colorRegion0[1] + ' 1: ' + colorRegion1[1] + ' 2: ' + colorRegion2[1] + ' 3: ' + colorRegion3[1] + ' 4: ' + colorRegion4[1] + ' 5: ' + colorRegion5[1] },
         //{ name: 'Water', value: tag.statWater.toString(), inline: true },
         //{ name: 'Movement', value: tag.statMovement.toString(), inline: true }

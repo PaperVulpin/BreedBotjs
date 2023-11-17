@@ -138,13 +138,14 @@ module.exports = {
     const tagMutationsMale = (interaction.options.getInteger('mutations-male') === null ? tag.mutationsMale : interaction.options.getInteger('mutations-male'));
     const tagMutationsFemale = (interaction.options.getInteger('mutations-female') === null ? tag.mutationsFemale : interaction.options.getInteger('mutations-female'));
     const tagBabyAge = (interaction.options.getNumber('baby-age') === null ? tag.babyAge : interaction.options.getNumber('baby-age'));
-    const tagLevel = (interaction.options.getInteger('level') === null ? tag.level : interaction.options.getInteger('level'));
-    const tagHealth = (interaction.options.getNumber('health') === null ? tag.health : interaction.options.getNumber('health'));
-    const tagStamina = (interaction.options.getNumber('stamina') === null ? tag.stamina : interaction.options.getNumber('stamina'));
+    const tagLevel = (interaction.options.getInteger('level') === null ? tag.dinoLevel : interaction.options.getInteger('level'));
+    const tagHealth = (interaction.options.getNumber('health') === null ? tag.statHealth : interaction.options.getNumber('health'));
+    const tagStamina = (interaction.options.getNumber('stamina') === null ? tag.statStamina : interaction.options.getNumber('stamina'));
     const tagTorpidity = (interaction.options.getNumber('torpidity') === null ? tag.torpidity : interaction.options.getNumber('torpidity'));
-    const tagOxygen = (interaction.options.getNumber('oxygen') === null ? tag.oxygen : interaction.options.getNumber('oxygen'));
-    const tagFood = (interaction.options.getNumber('food') === null ? tag.food : interaction.options.getNumber('food'));
-    const tagWeight = (interaction.options.getNumber('weight') === null ? tag.weight : interaction.options.getNumber('weight'));
+    const tagOxygen = (interaction.options.getNumber('oxygen') === null ? tag.statOxygen : interaction.options.getNumber('oxygen'));
+    const tagFood = (interaction.options.getNumber('food') === null ? tag.statFood : interaction.options.getNumber('food'));
+    const tagWeight = (interaction.options.getNumber('weight') === null ? tag.statWeight : interaction.options.getNumber('weight'));
+    const tagMelee = (interaction.options.getNumber('melee') === null ? tag.statMelee : interaction.options.getNumber('melee'));
 
     try {
       const updatedTag = await interaction.client.Tags.update({ 
@@ -164,7 +165,8 @@ module.exports = {
             statTorpidity: tagTorpidity,
             statOxygen: tagOxygen,
             statFood: tagFood,
-            statWeight: tagWeight
+            statWeight: tagWeight,
+            statMelee: tagMelee
       }, { where: {name: currentName } });
       //return interaction.reply(`Dino ${currentName} editted. Values changed:` + (interaction.options.getString('change-name') === null ? '' : '\nName changed to : ' + interaction.options.getString('change-name')) + (interaction.options.getString('species') === null ? '' : 'Species changed to : ' + interaction.options.getString('species')) ;
       
@@ -185,7 +187,8 @@ module.exports = {
 	(interaction.options.getNumber('torpidity') === null ? '' : '\nTorpidity changed to : ' + interaction.options.getNumber('torpidity')) +
 	(interaction.options.getNumber('oxygen') === null ? '' : '\nOxygen changed to : ' + interaction.options.getNumber('oxygen')) +
 	(interaction.options.getNumber('food') === null ? '' : '\nFood changed to : ' + interaction.options.getNumber('food')) +
-	(interaction.options.getNumber('weight') === null ? '' : '\nWeight changed to : ' + interaction.options.getNumber('weight'))
+	(interaction.options.getNumber('weight') === null ? '' : '\nWeight changed to : ' + interaction.options.getNumber('weight')) + 
+  (interaction.options.getNumber('melee') === null ? '' : '\nMelee changed to : ' + interaction.options.getNumber('melee'))
 );
     }
     catch (error) {

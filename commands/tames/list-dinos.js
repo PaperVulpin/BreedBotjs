@@ -53,13 +53,35 @@ module.exports = {
           const colorRegion3 = interaction.client.LookupColor.lookup(tag.colorSet3);
           const colorRegion4 = interaction.client.LookupColor.lookup(tag.colorSet4);
           const colorRegion5 = interaction.client.LookupColor.lookup(tag.colorSet5);
-          //result += ((tag.isFemale === "true" || tag.isFemale === "True") ? ':female_sign: ' : ':male_sign: ') + tag.name + ' - Lv. ' + tag.dinoLevel + ': 0: ' + colorRegion0[1] + ', 1: ' + colorRegion1[1] + ', 2: ' + colorRegion2[1] + ', 3: ' + colorRegion3[1] + ', 4: ' + colorRegion4[1] + ', 5: ' + colorRegion5[1] + '\n';
           result += ((tag.isFemale === "true" || tag.isFemale === "True") ? ':female_sign: ' : ':male_sign: ') + tag.name + ' - Lv. ' + tag.dinoLevel + ((colorRegion0[1] === '<:NoColor:1174024382637682719>') ? '' : ': 0: ' + colorRegion0[1]) + ((colorRegion1[1] === '<:NoColor:1174024382637682719>') ? '' : ', 1: ' + colorRegion1[1]) + ((colorRegion2[1] === '<:NoColor:1174024382637682719>') ? '' : ', 2: ' + colorRegion2[1]) + ((colorRegion3[1] === '<:NoColor:1174024382637682719>') ? '' : ', 3: ' + colorRegion3[1]) + ((colorRegion4[1] === '<:NoColor:1174024382637682719>') ? '' : ', 4: ' + colorRegion4[1]) + ((colorRegion5[1] === '<:NoColor:1174024382637682719>') ? '' : ', 5: ' + colorRegion5[1]) + '\n';
         });
       }
       else {
+        var highestHealth = 0, highestStamina = 0, highestWeight = 0, highestMelee = 0, highestFood = 0, highestOxygen = 0;
         filtered.forEach((tag) => {
-          result += ((tag.isFemale === "true" || tag.isFemale === "True") ? ':female_sign: ' : ':male_sign: ') + tag.name + ' - Lv. ' + tag.dinoLevel + ': <:Health:1168864273779404861>: ' + (tag.statHealth).toFixed(2) + ', <:Stamina:1168864280771313694>: ' + (tag.statStamina).toFixed(2) + ', <:Melee:1168864277097103413>: ' + (tag.statMelee).toFixed(2) + ', <:Weight:1168864283250151494>: ' + (tag.statWeight).toFixed(2) + ', <:Food:1168864087883653170>: ' + (tag.statFood).toFixed(2) + ', <:Oxygen:1168864278485413928>: ' + (tag.statOxygen).toFixed(2) + ((tag.mutationsMale !== 0) ? (', Paternal Mutations: ' + tag.mutationsMale) : '') + ((tag.mutationsFemale !== 0) ? (', Maternal Mutations: ' + tag.mutationsFemale) : '') + '\n';
+          if (highestHealth < tag.statHealth) {
+            highestHealth = tag.statHealth;
+          }
+          if (highestStamina < tag.statStamina) {
+            highestStamina = tag.statStamina;
+          }
+          if (highestWeight < tag.statWeight) {
+            highestWeight = tag.statWeight;
+          }
+          if (highestMelee < tag.statMelee) {
+            highestMelee = tag.statMelee;
+          }
+          if (highestFood < tag.statFood) {
+            highestFood = tag.statFood;
+          }
+          if (highestOxygen < tag.statOxygen) {
+            highestOxygen = tag.statOxygen;
+          }
+        });
+        
+        filtered.forEach((tag) => {
+          result += ((tag.isFemale === "true" || tag.isFemale === "True") ? ':female_sign: ' : ':male_sign: ') + tag.name + ' - Lv. ' + tag.dinoLevel + ': <:Health:1168864273779404861>: ' + (highestHealth === tag.statHealth ? '**' + (tag.statHealth).toFixed(2) + '**' : (tag.statHealth).toFixed(2)) + ', <:Stamina:1168864280771313694>: ' + (highestStamina === tag.statStamina ? '**' + (tag.statStamina).toFixed(2) + '**' : (tag.statStamina).toFixed(2)) + ', <:Melee:1168864277097103413>: ' + (highestMelee === tag.statMelee ? '**' + (tag.statMelee).toFixed(2) + '**' : (tag.statMelee).toFixed(2)) + ', <:Weight:1168864283250151494>: ' + (highestWeight === tag.statWeight ? '**' + (tag.statWeight).toFixed(2) + '**' : (tag.statWeight).toFixed(2)) + ', <:Food:1168864087883653170>: ' + (highestFood === tag.statFood ? '**' + (tag.statFood).toFixed(2) + '**' : (tag.statFood).toFixed(2)) + ', <:Oxygen:1168864278485413928>: ' + (highestOxygen === tag.statOxygen ? '**' + (tag.statOxygen).toFixed(2) + '**' : (tag.statOxygen).toFixed(2)) + ((tag.mutationsMale !== 0) ? (', Paternal Mutations: ' + tag.mutationsMale) : '') + ((tag.mutationsFemale !== 0) ? (', Maternal Mutations: ' + tag.mutationsFemale) : '') + '\n';
+          //result += ((tag.isFemale === "true" || tag.isFemale === "True") ? ':female_sign: ' : ':male_sign: ') + tag.name + ' - Lv. ' + tag.dinoLevel + ': <:Health:1168864273779404861>: ' + (tag.statHealth).toFixed(2) + ', <:Stamina:1168864280771313694>: ' + (tag.statStamina).toFixed(2) + ', <:Melee:1168864277097103413>: ' + (tag.statMelee).toFixed(2) + ', <:Weight:1168864283250151494>: ' + (tag.statWeight).toFixed(2) + ', <:Food:1168864087883653170>: ' + (tag.statFood).toFixed(2) + ', <:Oxygen:1168864278485413928>: ' + (tag.statOxygen).toFixed(2) + ((tag.mutationsMale !== 0) ? (', Paternal Mutations: ' + tag.mutationsMale) : '') + ((tag.mutationsFemale !== 0) ? (', Maternal Mutations: ' + tag.mutationsFemale) : '') + '\n';
         });
       }
 
