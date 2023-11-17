@@ -91,7 +91,8 @@ module.exports = {
           }
           
 
-          await interaction.channel.send(splitLines.length + ' ' + species + 's found.');
+          //await interaction.channel.send(splitLines.length + ' ' + species + 's found.');
+          await interaction.reply(splitLines.length + ' ' + species + 's found.');
         } else {
           await interaction.reply(`Dinosaurs of the species ${species}:\n${result}`);
         }

@@ -10,7 +10,7 @@ module.exports = {
         .setRequired(true))
     .addIntegerOption(option =>
       option.setName('color-region')
-        .setDescription('The region to get the value of (0-5).')
+        .setDescription('The color region to get the value of (0-5).')
         .setRequired(true))
   ,
   async execute(interaction) {
@@ -61,9 +61,8 @@ module.exports = {
             b = Math.pow(parseFloat(rgbValues[2].split('=')[1]), 1/2.2) * 255.999;
           return interaction.reply(`${tagName}'s converted RGB values ${tag.colorSet5} for color region ${colorRegion} are:\nR: ${Math.floor(r).toString(16)}, G: ${Math.floor(g).toString(16)}, B: ${Math.floor(b).toString(16)}\n${Math.floor(r).toString(16)}${Math.floor(g).toString(16)}${Math.floor(b).toString(16)}`);
           default:
-            return interaction.reply('Did not work');
+            return interaction.reply('Please enter a valid number between 0-5 to select a valid color region.');
       }
-      return interaction.reply('did not work.');
     }
     return interaction.reply('Could not find a dinosaur named: ' + tagName);
   },
