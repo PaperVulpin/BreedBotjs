@@ -8,11 +8,26 @@ module.exports = {
     .setDescription('Lists all dinosaurs in the database.')
     .addStringOption(option =>
       option.setName('species')
-        .setDescription('Show only the specified species.'))
+        .setDescription('Show only the specified species.')
+        .setAutocomplete(true))
     .addBooleanOption(option =>
       option.setName('show-colors')
         .setDescription('Shows a list of colors instead of stats.'))
   ,
+  //
+  async autocomplete(interaction) {
+    const tagList = await interaction.client.Tags.findAll({ attributes: ['name', 'speciesTag' ] });
+    const focusedValue = interaction.options.getFocused();
+    const choices = [...new Set(tagList.map(tag => tag.speciesTag))];
+    //const choices = uniqueSpecies.map(species => ({ name: species, value: species }));
+    const filtered = choices.filter(choice => choice.startsWith(focusedValue));
+    await interaction.respond(
+      filtered.map(choice => ({ name: choice, value: choice })).slice(0, 25),
+      );
+    //console.log('uniqueSpecies: ' + uniqueSpecies);
+    //console.log('choices: ' + choices);
+  },
+  //
   async execute(interaction) {
     const tagList = await interaction.client.Tags.findAll({ attributes: ['name', 'speciesTag', 'statHealth', 'statStamina', 'statWeight', 'statMelee', 'statFood', 'statOxygen', 'isFemale', 'dinoLevel', 'mutationsMale', 'mutationsFemale', 'colorSet0', 'colorSet1', 'colorSet2', 'colorSet3', 'colorSet4', 'colorSet5' ] });
     
@@ -120,7 +135,7 @@ module.exports = {
         }
       }
     } else {
-      const tagString = tagList.map(t => t.name).join(', ') || 'No tags set.';
+      const tagString = tagList.map(t => t.name).join(', ') || 'No dinos in database.';
       //return interaction.reply('List of dinos: ' + tagString);
 
       //Testing showing list of all dinos, sorted by species

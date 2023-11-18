@@ -46,7 +46,7 @@ module.exports = {
     const hours = options.getInteger('hours') || 0;
     const days = options.getInteger('days') || 0;
     const seconds = options.getInteger('seconds') || 0;
-    const privateReminder = options.getBoolean('private') || true;
+    const privateReminder = options.getBoolean('private') || false;
 
     let time = Date.now() + (days * 1000 * 60 * 60 * 24) + (hours * 1000 * 60 * 60) + (minutes * 1000 * 60) + (seconds * 1000);
 
