@@ -226,7 +226,31 @@ module.exports = {
         return [ 'MutatedPink2', '<:MutatedPink2:1174479850095005806>', 'N/A' ];
       case '(R=0.262251,G=0.262251,B=0.693872,A=1.000000)':
         return [ 'MutatedPurple2', '<:MutatedPurple2:1174949683932696576>', 'N/A' ];
-      //      
+      case '(R=0.033105,G=0.009721,B=0.000000,A=1.000000)':
+        return [ 'MutatedBrown1', '<:MutatedBrown1:1175928087284822086>', 'N/A' ];
+      case '(R=0.086500,G=0.381326,B=0.086500,A=1.000000)':
+        return [ 'MutatedGreen2', '<:MutatedGreen2:1177860128305848391>', 'N/A' ];
+      case '(R=0.015996,G=0.171441,B=0.029557,A=1.000000)':
+        return [ 'MutatedGreen3', '<:MutatedGreen3:1178257479667298304>', 'N/A' ];
+      case '(R=0.266356,G=0.693872,B=0.266356,A=1.000000)':
+        return [ 'MutatedGreen4', '<:MutatedGreen4:1179076788937314357>', 'N/A' ];
+      case '(R=0.086500,G=0.086500,B=0.381326,A=1.000000)':
+        return [ 'MutatedIndigo1', '<:MutatedIndigo1:1179622962140282910>', 'N/A' ];
+      case '(R=0.108000,G=0.021600,B=0.021600,A=0.000000)':
+        return [ 'WildRed1', '<:WildRed1:1179894861705515149>', 'N/A' ];
+      case '(R=1.000000,G=1.000000,B=1.000000,A=1.000000)':
+        return [ 'MutatedWhite1', '<:MutatedWhite1:1181421598914396240>', 'N/A' ];
+      case '(R=0.000000,G=0.033105,B=0.132868,A=1.000000)':
+        return [ 'MutatedBlue1', '<:MutatedBlue1:1182150314967711744>', 'N/A' ];
+      case '(R=0.033105,G=0.000000,B=0.000000,A=1.000000)':
+        return [ 'MutatedRed1', '<:MutatedRed1:1182152669402509322>', 'N/A' ];
+      case '(R=0.033105,G=0.132868,B=0.000000,A=1.000000)':
+        return [ 'MutatedGreen5', '<:MutatedGreen5:1182570380477612103>', 'N/A' ];
+      case '(R=0.023153,G=0.564712,B=0.467784,A=1.000000)':
+        return [ 'MutatedTeal1', '<:MutatedTeal1:1182570414279503882>', 'N/A' ];
+      case '(R=0.520996,G=1.000000,B=0.737911,A=1.000000)':
+        return [ 'MutatedTeal2', '<:MutatedTeal2:1182570971111108658>', 'N/A' ];
+      //  
       case '(R=0.000000,G=0.000000,B=0.000000,A=1.000000)': //No Color
         return [ 'No Color', '<:NoColor:1174024382637682719>', '0' ];
       default:

@@ -23,7 +23,7 @@ module.exports = {
 
     if (!rowCount) return interaction.reply('Dino ' + tagName + ' not found.');
 
-    if (causeOfDeath !== '') {
+    if (causeOfDeath !== null) {
       return interaction.reply(tagName + ' has died.\nCause of death: ' + causeOfDeath);
     }
     else {
